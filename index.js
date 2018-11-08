@@ -78,7 +78,7 @@ function validateMsg(msg){
 }
 
 function getData(api,id){
-    const sendMsg = CONFIG.data;
+    const sendMsg = CONFIG.info +"\n"+CONFIG.data+"\nValor: "+CONFIG.preco;
     api.sendMessage(sendMsg, id);
 }
 
