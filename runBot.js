@@ -14,9 +14,12 @@ login({email: CONFIG.email, password: CONFIG.pwd}, (err, api) => {
     if(err) return console.error(err);
     setScheduler(api,ID);
     api.listen((err, message) => {
-        if(message.threadID == ID)
-            getFunctionCall(message.body,api)
-        
+        if(err){
+            console.log(err);  
+        }else{
+            if(message.threadID == ID)
+                getFunctionCall(message.body,api)
+        }
     });
 });
 
@@ -67,9 +70,9 @@ function validateMsg(msg){
 
 function setScheduler(api,id){
     var rule = new schedule.RecurrenceRule();
-    rule.date = 10;
-    rule.hour = 16;
-    
+    rule.date = 14;
+    rule.hour = 12;
+    rule.minute = 0;
      
     var j = schedule.scheduleJob(rule, function(){
         currentIndex = currentIndex+1;
